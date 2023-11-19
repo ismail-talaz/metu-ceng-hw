@@ -28,7 +28,7 @@ int main(){
     meineBST2.insert("FAFAFAFA",25);
     meineBST2.insert("TTTTT",5);
     meineBST2.insert("ZAZAZA",22);
-    meineBST2.insert("ASD",5);
+    meineBST2.insert("AS",5);
 
 
 
