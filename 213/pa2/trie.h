@@ -105,7 +105,6 @@ void Trie<T>::remove(std::string username) {
     TrieNode* curr=root;
     for(char charac:username){
         curr=curr->children[static_cast<int>(charac)];
-        }
     }
     curr->isEndOfKey=false;
 }
