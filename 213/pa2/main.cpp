@@ -36,7 +36,7 @@ int main(){
     cout<<"Result:"<<endl;
     result->tree2vector(result->getRoot());*/
 
-    string key1="eray";
+    /*string key1="eray";
     string key2="araasy";
     string key3="beray";
     string key4="yusuf";
@@ -64,10 +64,16 @@ int main(){
     a.insert(key5,movie5);
     result=a.merge(&b);
 
-    cout<<"era21321y";
+    cout<<"era21321y";*/
+    Movie movie1("Interstellar",1990,9.5);
+    Trie<User> c;
+    c.insert("eray");
+    c.insert("berat");
+    User* user2=c.search("eray");
+    user2->addMovie("Interstellar",movie1);
+    c.search("eray");
+    c.remove("eray");
+    c.print();
     
-
-
-
     return 0;
 }
