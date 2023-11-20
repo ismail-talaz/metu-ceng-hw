@@ -61,20 +61,53 @@ Trie<T>::~Trie() {
 
 template <class T>
 Trie<T>& Trie<T>::insert(const string& key) {
-    /* IMPLEMENT THIS */
+    TrieNode* curr=root;
+    int length=key.length();
+    for(int i=0;i<length;i++){
+        char cChar=key[i];
+        if ((curr->children[static_cast<int>(cChar)])!=NULL){
+            curr=(curr->children[static_cast<int>(cChar)]);
+        }
+        else{
+            TrieNode* newNode= new TrieNode(cChar);
+            if (i==length-1){
+                newNode->isEndOfKey=true;
+                newNode->data=new T();
+            }
+            (curr->children[static_cast<int>(cChar)])=newNode;
+            curr=(curr->children[static_cast<int>(cChar)]);
+        }
+    }
     return *this;
 }
 
 template <class T>
 T* Trie<T>::search(std::string username) {
-    /* IMPLEMENT THIS */
+    TrieNode* curr=root;
+    for(char charac:username){
+        if(curr->children[static_cast<int>(charac)]==NULL){
+            return NULL;
+        }
+        else{
+            curr=curr->children[static_cast<int>(charac)];
+        }
+    }
+    if (curr->isEndOfKey){
+        return curr->data;
+    }
     return NULL;
+
 }
 
 template <class T>
 void Trie<T>::remove(std::string username) {
-    /* IMPLEMENT THIS */
-
+    if(!search(username)){return;}
+    TrieNode* curr=root;
+    for(char charac:username){
+        curr=curr->children[static_cast<int>(charac)];
+        }
+    }
+    curr->isEndOfKey=false;
 }
 
 template <class T>
