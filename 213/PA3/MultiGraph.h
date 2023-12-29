@@ -271,14 +271,15 @@ void MultiGraph::RemoveVertex(const std::string& vertexName)
     if(removal == -1){
         throw VertexNotFoundException(vertexName);
     }
-    
+
     vertexList.erase(vertexList.begin() + removal);
+    
     for(int i=0 ; i<vertexList.size();i++){
         int j=0;
-        std::vector<GraphEdge> currentEdges = vertexList[i].edges;
-        while(j<currentEdges.size()){
-            if(currentEdges[j].endVertexIndex==removal){
-                 currentEdges.erase(currentEdges.begin() + j);
+        
+        while(j<vertexList[i].edges.size()){
+            if(vertexList[i].edges[j].endVertexIndex==removal){
+                vertexList[i].edges.erase(vertexList[i].edges.begin() + j);
             }
             else{
                 j++;
@@ -288,16 +289,14 @@ void MultiGraph::RemoveVertex(const std::string& vertexName)
     
     for(int i=0 ; i<vertexList.size();i++){
         int j=0;
-        std::vector<GraphEdge> currentEdges = vertexList[i].edges;
-        while(j<currentEdges.size()){
-            if(currentEdges[j].endVertexIndex>removal){
-                 currentEdges[j].endVertexIndex-=1;
+        while(j<vertexList[i].edges.size()){
+            if(vertexList[i].edges[j].endVertexIndex>removal){
+                vertexList[i].edges[j].endVertexIndex-=1;
             }
-            else{
-                j++;
-            }
+            j++;
         }
     }
+    
 }
 
 void MultiGraph::AddEdge(const std::string& edgeName,
